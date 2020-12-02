@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gdorcas <gdorcas@student.42.fr>            +#+  +:+       +#+         #
+#    By: fgracefo <fgracefo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/01 17:10:00 by gdorcas           #+#    #+#              #
-#    Updated: 2020/12/01 19:27:31 by gdorcas          ###   ########.fr        #
+#    Updated: 2020/12/02 16:48:38 by fgracefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,16 @@ ALL_C =	check_args.c\
 		visual/reload_carriages.c \
 		visual/reload_fonts.c
 
+# ----- Colors -----
+BLACK:="\033[1;30m"
+RED:="\033[1;31m"
+GREEN:="\033[1;32m"
+CYAN:="\033[1;35m"
+PURPLE:="\033[1;36m"
+WHITE:="\033[1;37m"
+EOC:="\033[0;0m"
+# ==================
+
 SRCDIR = ./srcs
 OBJDIR = ./objs
 
@@ -103,28 +113,33 @@ LIBS = 		ft \
 
 LIBS_FLAG = $(addprefix -l,$(LIBS)) `sdl2-config --libs`
 
-COMP_LIBFT = make -C $(LIBFT_DIR)
+COMP_LIBFT = @make -C $(LIBFT_DIR)
 
-COMP_LIBFTPRINTF = make -C $(LIBFTPRINTF_DIR)
+COMP_LIBFTPRINTF = @make -C $(LIBFTPRINTF_DIR)
 
 FLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
 $(NAME): $(LIBFT_DIR)/libft.a $(LIBFTPRINTF_DIR)/libftprintf.a $(OBJS) $(COMMON_OBJS)
-	gcc $(FLAGS) $(OBJS) $(COMMON_OBJS) $(LIB_DIR_FLAG) $(LIBS_FLAG) -o $@
+	@echo $(CYAN) " - Compiling $(NAME)" $(EOC)
+	@gcc $(FLAGS) $(OBJS) $(COMMON_OBJS) $(LIB_DIR_FLAG) $(LIBS_FLAG) -o $@
+	@echo $(GREEN) " - OK" $(EOC)
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
-	mkdir -p $(OBJDIR)/visual
-	mkdir -p $(OBJDIR)/commands
-	mkdir -p $(OBJDIR)/common
+	@echo $(PURPLE) " - Making $(OBJDIR) folders" $(EOC)
+	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)/visual
+	@mkdir -p $(OBJDIR)/commands
+	@mkdir -p $(OBJDIR)/common
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADER_FILES) | $(OBJDIR)
-	gcc $(FLAGS) $(INCS) -c $< -o $@
+	@echo $(PURPLE) " - Compiling $< into $@" $(EOC)
+	@gcc $(FLAGS) $(INCS) -c $< -o $@
 
 $(COMMON_OBJS): ./../common/op.c $(HEADER_FILES)
-	gcc $(FLAGS) $(INCS) -c $< -o $@
+	@echo $(PURPLE) " - Compiling $< into $@" $(EOC)
+	@gcc $(FLAGS) $(INCS) -c $< -o $@
 
 $(LIBFT_DIR)/libft.a: libft
 
@@ -137,12 +152,14 @@ ft_printf:
 	$(COMP_LIBFTPRINTF)
 
 clean:
-	rm -rf $(OBJDIR)
-	$(COMP_LIBFT) clean
+	@echo $(RED) " - Removing $(NAME) object files" $(EOC)
+	@rm -rf $(OBJDIR)
+	@$(COMP_LIBFT) clean
 
 fclean: clean
-	rm -rf $(NAME)
-	$(COMP_LIBFT) fclean
+	@echo $(RED) " - Removing $(NAME)" $(EOC)
+	@rm -rf $(NAME)
+	@$(COMP_LIBFT) fclean
 
 re: fclean all
 

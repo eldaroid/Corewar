@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gdorcas <gdorcas@student.42.fr>            +#+  +:+       +#+         #
+#    By: fgracefo <fgracefo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/01 18:39:31 by gdorcas           #+#    #+#              #
-#    Updated: 2020/12/01 19:04:58 by gdorcas          ###   ########.fr        #
+#    Updated: 2020/12/02 16:34:14 by fgracefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,16 @@ SRC = 	ft_printf.c \
 		parse_colors.c \
 		main_funcs.c
 
+# ----- Colors -----
+BLACK:="\033[1;30m"
+RED:="\033[1;31m"
+GREEN:="\033[1;32m"
+CYAN:="\033[1;35m"
+PURPLE:="\033[1;36m"
+WHITE:="\033[1;37m"
+EOC:="\033[0;0m"
+# ==================
+
 NAME = libftprintf.a
 
 CC = gcc
@@ -51,20 +61,25 @@ OBJS	= $(addprefix $(OBJDIR)/, $(ALL_OBJ))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $@ $^
-	ranlib $@
+	@echo $(CYAN) " - Compiling $(NAME)" $(EOC)
+	@ar rc $@ $^
+	@ranlib $@
+	@echo $(GREEN) " - OK" $(EOC)
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES) | $(OBJDIR)
-	$(CC) $(CFLAGS) -I./includes -c $< -o $@
+	@echo $(PURPLE) " - Compiling $< into $@" $(EOC)
+	@$(CC) $(CFLAGS) -I./includes -c $< -o $@
 
 clean:
-	rm -rf $(OBJDIR)
+	@echo $(RED) " - Removing $(NAME) object files" $(EOC)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo $(RED) " - Removing $(NAME)" $(EOC)
+	@rm -f $(NAME)
 
 re: fclean all
 

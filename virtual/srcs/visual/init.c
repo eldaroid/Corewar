@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gdorcas <gdorcas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgracefo <fgracefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/25 08:53:04 by eklompus          #+#    #+#             */
-/*   Updated: 2020/12/01 18:26:49 by gdorcas          ###   ########.fr       */
+/*   Updated: 2020/12/02 17:00:50 by fgracefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static int	calc_font(t_vis *vis)
 int			init_sdl(t_vis *vis)
 {
 	ft_bzero(vis, sizeof(*vis));
-	vis->wwidth = 1700;
-	vis->wheight = 1100;
+	vis->wwidth = 1680;
+	vis->wheight = 910;
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS) != 0)
 	{
 		print_sdl_error(SDL_GetError());

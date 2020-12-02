@@ -6,7 +6,7 @@
 #    By: fgracefo <fgracefo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/02 16:01:53 by fgracefo          #+#    #+#              #
-#    Updated: 2020/12/02 16:01:56 by fgracefo         ###   ########.fr        #
+#    Updated: 2020/12/02 16:35:43 by fgracefo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,16 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 		ft_array_size.c ft_lstadd_back.c ft_voidcpy.c ft_array_new.c \
 		ft_array_delete_all.c ft_array_insert.c
 
+# ----- Colors -----
+BLACK:="\033[1;30m"
+RED:="\033[1;31m"
+GREEN:="\033[1;32m"
+CYAN:="\033[1;35m"
+PURPLE:="\033[1;36m"
+WHITE:="\033[1;37m"
+EOC:="\033[0;0m"
+# ==================
+
 NAME	= libft.a
 
 FLAGS	= -Wall -Wextra -Werror -g
@@ -48,20 +58,25 @@ OBJS	= $(addprefix $(OBJDIR)/, $(ALL_OBJ))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@echo $(CYAN) " - Compiling $(NAME)" $(EOC)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@echo $(GREEN) " - OK" $(EOC)
 
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES) | $(OBJDIR)
-	gcc $(FLAGS) -I./includes -c $< -o $@
+	@echo $(PURPLE) " - Compiling $< into $@" $(EOC)
+	@gcc $(FLAGS) -I./includes -c $< -o $@
 
 clean:
-	/bin/rm -rf $(OBJDIR)
+	@echo $(RED) " - Removing $(NAME) object files" $(EOC)
+	@/bin/rm -rf $(OBJDIR)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@echo $(RED) " - Removing $(NAME)" $(EOC)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
 

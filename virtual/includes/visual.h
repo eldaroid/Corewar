@@ -6,7 +6,7 @@
 /*   By: fgracefo <fgracefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 14:41:06 by gdorcas           #+#    #+#             */
-/*   Updated: 2020/12/02 16:10:46 by fgracefo         ###   ########.fr       */
+/*   Updated: 2020/12/02 16:59:09 by fgracefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <SDL_ttf.h>
 # include "op.h"
 
-# define FIELD_FONT		"monaco.ttf"
+# define FIELD_FONT		"PixarTwo-Bold.ttf"
 
 # define START_FIELD_X	(10)
 # define START_FIELD_Y	(10)
