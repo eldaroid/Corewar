@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmetallo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fgracefo <fgracefo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:14:09 by dmetallo          #+#    #+#             */
-/*   Updated: 2020/12/01 18:14:10 by dmetallo         ###   ########.fr       */
+/*   Updated: 2020/12/02 17:29:59 by fgracefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		errors_code2(int num)
 		tmp = "invalid characters, "
 "must be the name or comment of the champion\n";
 	else if (num == 14)
-		tmp = "Chimpion name or comment does not exist\n";
+		tmp = "Champion name or comment does not exist\n";
 	else if (num == 15)
 		tmp = "not valid label\n";
 	else
